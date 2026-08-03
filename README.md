@@ -1,31 +1,46 @@
-# Istanbul Health Market — каталог с заказом в WhatsApp
+# Istanbul Health Market — полный сайт
 
-## Что работает
-- публичная витрина товаров;
-- поиск, категории, цены, наличие, срок годности;
-- корзина;
-- отправка готового заказа в WhatsApp на +7 928 958-04-00;
-- вход администратора;
-- добавление, изменение и удаление товаров;
-- загрузка фотографий в Supabase Storage.
+## Что уже есть
+- Клиентская витрина без кнопки администратора
+- Поиск по товарам
+- Фото, цена, остаток и срок годности
+- Корзина
+- Отправка заказа в WhatsApp
+- Отдельная защищённая страница `/login`
+- Админка `/admin`
+- Загрузка фото и добавление товаров
+- База Supabase
 
-## 1. Supabase
-1. Откройте `SQL Editor`.
-2. Вставьте содержимое файла `supabase/setup.sql` и нажмите Run.
-3. Authentication → Users → Add user. Создайте свой email и пароль.
-4. Table Editor → `admins` → Insert row. В поле `user_id` вставьте ID созданного пользователя.
+## Как получить настоящую ссылку
 
-## 2. Vercel Environment Variables
-Добавьте:
-- `NEXT_PUBLIC_SUPABASE_URL` = адрес проекта, например `https://xxxxx.supabase.co`
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY` = Publishable key `sb_publishable_...`
-- `NEXT_PUBLIC_WHATSAPP_NUMBER` = `79289580400`
+### 1. Создайте Supabase
+1. Откройте supabase.com и создайте бесплатный проект.
+2. В SQL Editor вставьте файл `supabase/setup.sql` и нажмите Run.
+3. В Authentication → Users создайте своего администратора: email + пароль.
+4. В Project Settings → API скопируйте Project URL и anon public key.
 
-## 3. GitHub
-Загрузите все файлы проекта в корень репозитория и нажмите Commit changes. Vercel автоматически выполнит deploy.
+### 2. Подготовьте переменные
+Скопируйте `.env.example` в `.env.local` и вставьте:
+- NEXT_PUBLIC_SUPABASE_URL
+- NEXT_PUBLIC_SUPABASE_ANON_KEY
+- NEXT_PUBLIC_WHATSAPP_NUMBER=79289580400
 
-## Админка
-Откройте `/admin`, например:
-`https://ваш-сайт.vercel.app/admin`
+### 3. Запустите на компьютере
+```bash
+npm install
+npm run dev
+```
+Откройте http://localhost:3000
 
-Важно: WhatsApp открывается у клиента с уже составленным заказом. Для полностью автоматической отправки сообщений без нажатия клиента нужен платный WhatsApp Business Cloud API.
+### 4. Получите бесплатную ссылку через Vercel
+1. Загрузите проект в GitHub.
+2. Откройте vercel.com → Add New Project.
+3. Выберите репозиторий.
+4. Добавьте те же переменные Environment Variables.
+5. Нажмите Deploy.
+
+После этого получите ссылку вида:
+`https://istanbul-health-market.vercel.app`
+
+Клиенту отправляйте главную ссылку `/`.
+Админка открывается только через `/login`.

@@ -1,5 +1,2 @@
-import Storefront from '@/components/Storefront';
-
-export default function Home() {
-  return <Storefront />;
-}
+import Catalog from '@/components/Catalog';
+export default function Page(){return <Catalog/>}
